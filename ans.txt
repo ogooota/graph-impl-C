@@ -1,0 +1,148 @@
+1. Um grafo G é uma estrutura de dados 
+representada formalmente por G = (V, A),
+sendo V igual ao número de vértices que
+a compõem, e A o número de arestas.
+
+2. Grafos direcionados possuem direção,
+significando que a partir de um vértice
+V1, existe apenas um caminho para se 
+chegar a um vértice V2, enquanto partindo
+do mesmo V2, esse caminho é inexistente.
+Já grafos não direcionados permitem a 
+permutação de ambos os caminhos, tanto 
+V1 -> V2, quanto V2 -> V1. 
+Grafos ponderados são apenas uma variante
+dos grafos não direcionados que apresentam 
+a variável de peso em cada aresta, o que 
+permite que algoritmos mais específicos 
+sejam implementados.
+
+3. Um grafo trivial possui apenas um vértice,
+e não possui nenhuma aresta.
+
+4. Um grafo simples é um grafo não direcionado
+que não possui laços e arestas paralelas. (sentido -> ~(LAÇOS | ARESTAS))
+
+5. Sim, grafos completos e regulares representam
+a mesma coisa, porém informando características
+que se completam: grafos completos são simplesmente
+grafos em que pode-se caminhar para um vértice V2 
+qualquer, a partir de qualquer outro vértice V1,
+ou seja, por consequência, todo grafo completo é 
+também um grafo regular, já que um grafo regular 
+representa um grafo em que se tem o mesmo grau de 
+arestas para todos os vértices. Sendo assim, por
+consequência, grafos regulares também são completos,
+já que para poder ir para qualquer vértice de um grafo
+a partir de qualquer outro, o grau de todos os vértices
+DEVE ser o mesmo, caso contrário, isso significaria que
+nem todos os vértices presentes estão conectados.
+
+6. Um subgrafo é a representação de um grafo menor a 
+partir de um grafo maior. Um exemplo seria com a matriz
+de adjacências:
+
+  grafo maior:
+        0  1  2  3  4 
+    0 | 0, 1, 1, 0, 0 |
+    1 | 1, 0, 1, 1, 1 |
+    2 | 1, 1, 0, 0, 0 |
+    3 | 0, 1, 0, 0, 1 |
+    4 | 0, 1, 0, 1, 0 |
+
+  um possível subgrafo:
+        0  1  2
+    0 | 0, 1, 1 |
+    1 | 1, 0, 1 |
+    2 | 1, 1, 0 |
+
+7. Um grafo bipartido é um grafo dividido em 2 partes,
+sendo essa divisão caracterizada pela diferença de grau 
+entre os vértices. Praticamente grafos bipartidos são 
+utilizados para a criação de redes neurais, já que são
+a forma mais conveniente de representar neurônios (parte 1), 
+que por sua vez, se comunicam com a próxima camada (parte 2).
+
+8. Em um grafo conexo, existe um CAMINHO possível para qualquer 
+vértice do grafo, já no grafo desconexo, pode haver paralelismo 
+ou trivialismo.
+
+9. Grafos isomorfos são grafos que possuem a característica de
+serem bijetores, também descritos como "bijetores de preservação de pontas", 
+isso significa que eles podem ser representados de formas diferentes 
+visualmente, mas sua estrutura de vérticese arestas deve se manter a mesma.
+
+10. Grafos Eulerianos são chamados assim por conta do algoritmo 
+do "caminho euleriano", que define que: se um grafo possui todos
+os vértices com grau par, certamente existe um caminho que percorre
+todas suas arestas exatamente uma vez e termina no mesmo vértice
+em que começou.
+
+11. Um grafo planar é simplesmente um grafo onde não há sobreposição
+de caminhos. Um tipo de grafo não-planar: grafos bipartidos.
+
+12. Um caminho é o conjunto de arestas entre um vértice V1 e outro
+V2, tendo seu comprimento definido em grafos ponderados como a soma
+de seus pesos.
+
+13. A categoria single-source descreve um algoritmo que consegue encontrar
+um percurso entre um vértice qualquer V e qualquer outro vértice. Um 
+algoritmo famoso é o single-source-shortest-path(SSSP), criado por Dijkstra.
+Já a single-pair descreve um algoritmo que consegue encontrar um caminho
+entre um vértice V1, e outro V2.
+A all-pair descreve um algoritmo que encontra um caminho entre todas as 
+possíveis permutações de pares dentro de um grafo, como se fosse uma repetição
+do single-pair, tendo V1 e V2 como permutações.
+
+14. O algoritmo de percurso em profundidade (DFS) tem como estrutura
+base a pilha, e consiste em:
+1 - escolher o vértice inicial;
+2 - a partir dele, empurre todos os vértices adjancentes para o topo 
+da pilha;
+3 - após isso, o novo vértice inicial se torna o vértice do topo da pilha,
+e isso cria a profundidade como prioridade;
+4 - quando o vértice do topo for totalmente explorado, ou seja,
+quando os passos 2 e 3 forem aplicados a ele, seja recursivamente, ou
+iterativamente, remova-o do topo da pilha e aplique os mesmos passos
+no novo topo novamente.
+O DFS utiliza-se da pilha, justamente por ter como foco a profundidade
+antes da variedade, diferenciando-se do BFS.
+
+15. O algoritmo de percurso em largura (BFS) tem como estrutura base
+a fila, e consiste em:
+1 - escolher o vértice inicial;
+2 - a partir dele, empurre para o final da fila seus vértices adjacentes
+(obs: o ato de empurrar os vértices adjacentes para alguma estrutura de 
+dados se chama "explorar" o vértice.);
+3 - após explorar o vértice, remova-o da fila e explore o próximo,
+tornando-o o novo vértice inicial;
+Naturalmente, após o passo número 2, teremos uma "largura" em expansão,
+o que caracteriza o algoritmo com o foco em variedade de vértices antes
+de profundidade, diferenciando-se do DFS.
+
+16. O BFS e DFS procuram as estruturas de dados mais convenientes com seus
+propósitos. O BSF procura a fila como forma de salvar os próximos vértices
+a serem explorados no sentido de variedade, quando um vértice é empurrado
+para o final da fila, significa que seus adjacentes serão explorados antes
+dos adjacentes dos adjacentes. Já o DFS explora de forma TOTAL o primeiro
+adjacente do primeiro vértice, utilizando a estrutura de dados da pilha 
+apenas para saber qual o próximo vértice a ser explorado.
+Os usos mais adequados de cada um dependem do sistema, caso a informação
+que esteja procurando possa se localizar mais próxima do vértice escolhido
+como inicial, o BFS se destaca, já que não há a necessidade de explorar
+totalmente os caminhos até encontrá-la. Em contrapartida, o DFS se destaca
+quando há a necessidade imprescindível de exploração total antes de partir
+para o próximo vértice, como por exemplo, em um labirinto grande onde explorar
+todos os caminhos se tornaria exaustivo para o BFS, o DFS encontra a saída
+com muito mais eficiência.
+
+17. As aplicações práticas de grafos podem ser encontradas em:
+1 - mapas de vôo em sites de compra de passagens aéreas;
+2 - ciclo de amizades em redes sociais;
+3 - mapas de trânsito entre cidades;
+Os grafos são úteis para representar coisas como caminhos mais curtos,
+conexões necessárias em um vôo, pessoas você talvez conheça com base
+em pessoas que seus amigos conhecem, etc. E tudo isso se modela 
+a partir de cada relação direta ou indireta que um grafo representa,
+dependendo claro, do objetivo do algoritmo implementado.
+
